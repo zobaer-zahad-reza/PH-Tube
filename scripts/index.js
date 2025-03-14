@@ -1,3 +1,13 @@
+const showloading = () => {
+  document.getElementById("loading").classList.remove("hidden");
+  document.getElementById("video-container").classList.add("hidden");
+};
+
+const hideloading = () => {
+  document.getElementById("loading").classList.add("hidden");
+  document.getElementById("video-container").classList.remove("hidden");
+};
+
 const removeActiveCalss = () => {
   const removeActivebtn = document.querySelectorAll(".active");
   for (const btn of removeActivebtn) {
@@ -11,8 +21,11 @@ const loadCategories = () => {
     .then((data) => displayCategories(data.categories));
 };
 
-const loadVideos = () => {
-  fetch("https://openapi.programming-hero.com/api/phero-tube/videos")
+const loadVideos = (searchText = "") => {
+  showloading();
+  fetch(
+    `https://openapi.programming-hero.com/api/phero-tube/videos?title=${searchText}`
+  )
     .then((res) => res.json())
     .then((data) => {
       removeActiveCalss();
@@ -113,10 +126,10 @@ const displayVideos = (videos) => {
                           video.authors[0].verified
                             ? `
                           <img
-    class="w-5 h-5"
-    src="https://img.icons8.com/?size=64&id=eZo3c88c63il&format=png"
-    alt=""
-  ></img>
+                            class="w-5 h-5"
+                            src="https://img.icons8.com/?size=64&id=eZo3c88c63il&format=png"
+                            alt=""
+                          ></img>
                           `
                             : ``
                         }
@@ -133,5 +146,11 @@ const displayVideos = (videos) => {
     `;
     videoContainer.appendChild(videoCard);
   });
+  hideloading();
 };
+
+document.getElementById("search-input").addEventListener("keyup", (event) => {
+  const input = event.target.value;
+  loadVideos(input);
+});
 loadCategories();

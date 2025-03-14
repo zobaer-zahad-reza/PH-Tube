@@ -23,11 +23,11 @@
                 <img class="w-[120px]" src="assets/Logo.png" alt="">
             </div>
             <div class="">
-                <button class="btn">Sorted by view</button>
+                <input id="search-input" type="text" placeholder="Search" class="input" />
             </div>
             <div>
                 <a href="">
-                    <button class="btn bg-[#FF1F3D] text-white">Blog</button>
+                    <button class="btn bg-[#FF1F3D] text-white">Sorted by view</button>
                 </a>
             </div>
         </nav>
@@ -39,6 +39,10 @@
         </nav>
     </header>
 
+    <section id="loading" class="text-center py-10 mt-6 hidden">
+        <span class="loading loading-dots loading-xl"></span>
+    </section>
+
     <section id="video-container" class="w-11/12 mx-auto grid grid-cols-1 lg:grid-cols-3 2xl:grid-cols-4 gap-3">
 
         <div class="py-24 col-span-full text-center flex flex-col justify-center items-center">
@@ -48,7 +52,7 @@
     </section>
 
     <!-- Open the modal using ID.showModal() method -->
-<!-- <button class="btn" onclick="my_modal_1.showModal()">open modal</button> -->
+
 <dialog id="video_details" class="modal">
   <div class="modal-box">
     <div id="details_container"></div>
@@ -66,11 +70,3 @@
      <script src="scripts/index.js"></script>
 </body>
 </html>
-
-
-<div class="profile">
-                        
-</div>
-<div class="intro">
-
-</div>
