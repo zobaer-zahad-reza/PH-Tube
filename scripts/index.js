@@ -85,6 +85,7 @@ const displayVideos = (videos) => {
     `;
   }
   videos.forEach((video) => {
+    console.log(video);
     const videoCard = document.createElement("div");
     videoCard.innerHTML = `
     <div class="card bg-base-100">
@@ -105,13 +106,29 @@ const displayVideos = (videos) => {
                 </div>
                 <div>
                     <h2 class="font-semibold text-lg">${video.title}</h2>
-                    <p class="text-sm text-gray-500 flex gap-1">${video.authors[0].profile_name}
-                        <img class="w-5 h-5" src="https://img.icons8.com/?size=64&id=eZo3c88c63il&format=png" alt="">
+                    <p class="text-sm text-gray-500 flex gap-1">${
+                      video.authors[0].profile_name
+                    }
+                        ${
+                          video.authors[0].verified
+                            ? `
+                          <img
+    class="w-5 h-5"
+    src="https://img.icons8.com/?size=64&id=eZo3c88c63il&format=png"
+    alt=""
+  ></img>
+                          `
+                            : ``
+                        }
                     </p>
-                    <p class="text-sm text-gray-500">${video.others.views} views</p>
+                    <p class="text-sm text-gray-500">${
+                      video.others.views
+                    } views</p>
                 </div>
             </div>
-            <button onclick="loadVideoDetails('${video.video_id}')" class="btn btn-block">Show Details</button>
+            <button onclick="loadVideoDetails('${
+              video.video_id
+            }')" class="btn btn-block">Show Details</button>
           </div>
     `;
     videoContainer.appendChild(videoCard);
